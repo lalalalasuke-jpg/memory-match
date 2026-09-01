@@ -1,9 +1,9 @@
-# godot-web-game-template
+# Memory Match
 
-Godot 4.7 の 2D ゲームを **GitHub Pages に自動デプロイ**するスターターテンプレ。
-`main` に push すると GitHub Actions が Web 書き出しして本番反映する ＝ **PC 不要でスマホからでも更新できる**。
+シンプルな神経衰弱ゲーム（Godot 4.7、Web）。4x4=16枚のカードから同じ絵柄のペアを揃えていく。
+`godot-web-game-template` から作成。`main` に push すると GitHub Actions が Web 書き出しして本番反映する。
 
-作った経緯・ハマりどころは memory の `web-game-deploy` / `godot-notes`、実例は `suika-game`。
+以下はテンプレ由来の一般的な手順メモ（新しいゲームを増やす時の参考用）。
 
 ## 新しいゲームを始める
 
