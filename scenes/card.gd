@@ -35,10 +35,29 @@ func set_matched() -> void:
 	modulate = Color(1, 1, 1, 0.5)
 
 
-# 裏向きの間はボタンの見た目（裏面）そのまま。表向き/成立時だけ絵柄を描く
 func _draw() -> void:
-	if not (face_up or matched):
-		return
+	if face_up or matched:
+		_draw_face()
+	else:
+		_draw_back()
+
+
+# 裏向き：はっきり見える色つきのカード裏面を描く（Godot標準ボタンの薄い見た目に頼らない）
+func _draw_back() -> void:
+	var rect := Rect2(Vector2.ZERO, size)
+	draw_rect(rect, Color(0.22, 0.24, 0.34), true)
+	draw_rect(rect, Color(0.45, 0.5, 0.62), false, 4.0)
+	var c := size * 0.5
+	var half := Vector2(size.x * 0.22, size.y * 0.22)
+	var diamond := PackedVector2Array([
+		c + Vector2(0, -half.y), c + Vector2(half.x, 0),
+		c + Vector2(0, half.y), c + Vector2(-half.x, 0),
+	])
+	draw_colored_polygon(diamond, Color(0.45, 0.5, 0.62, 0.6))
+
+
+# 表向き/成立時：絵柄を描く
+func _draw_face() -> void:
 	var sym: Dictionary = SYMBOLS[symbol_index]
 	var center := size * 0.5
 	var r := minf(size.x, size.y) * 0.5 - 10.0
